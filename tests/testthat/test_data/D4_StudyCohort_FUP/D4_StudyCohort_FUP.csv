@@ -1,0 +1,4 @@
+person_id,T0,group,boot_id,end_study_period,end_of_data_collection,no_livebirth,conception_within_3months,treatment_discontinuation,treatment_switch,treatment_stop_estimand2,death,major_congenital_malformation,diagnosis_autism,diagnosis_adhd,age_8_years_old,disenrolment_database,general_end_fup_estimand1,reason_censoring_1,fup_length_days_1,general_end_fup_estimand2,reason_censoring_2,fup_length_days_2,event
+1,2012-03-15,EXPOSED,0,2024-12-31,2024-12-31,,,2014-12-01,,,,,,2015-08-20,2023-09-10,,2015-08-20,diagnosis_autism,1253,diagnosis_autism,diagnosis_autism,1253,TRUE
+2,2012-07-20,EXPOSED,0,2024-12-31,2024-12-31,,,,2015-12-02,,,,,,,,2015-12-02,treatment_switch,937,2015-12-02,treatment_switch,937,FALSE
+3,2012-01-10,CONTROL,0,2024-12-31,2024-12-31,,,,,,2021-01-02,,,,,,2021-01-02,death,3280,2021-01-02,death,3280,FALSE

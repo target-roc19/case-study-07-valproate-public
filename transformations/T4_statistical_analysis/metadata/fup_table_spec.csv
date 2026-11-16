@@ -1,0 +1,33 @@
+object,estimand,section,row_order,variable,label
+d4_fup_father,1,ie,1,conception_within_3_months,Conception within 3 months of T0
+d4_fup_father,1,ie,2,treatment_discontinuation,Treatment discontinuation
+d4_fup_father,1,cens,1,disenrolment_database_father,Loss to follow-up (dissenrollment or migration)
+d4_fup_father,1,cens,2,treatment_switch,Treatment switch prior to conception
+d4_fup_father,1,cens,3,earliest_conception_date,Conception leading to a live birth within 3 years of T0 
+d4_fup_father,1,cens,4,no_livebirth_conception,Reached 3 years of follow-up without conception leading to a live birth
+d4_fup_father,2,ie,1,conception_within_3_months,Conception within 3 months of T0
+d4_fup_father,2,ie,2,treatment_stop_3_months_or_less,Treatment discontinuation < 3 months before conception
+d4_fup_father,2,cens,1,disenrolment_database_father,Loss to follow-up (dissenrollment or migration)
+d4_fup_father,2,cens,2,treatment_stop_more_than_3_months,Treatment discontinuation > 3 months before conception
+d4_fup_father,2,cens,3,treatment_switch,Treatment switch prior to conception
+d4_fup_father,2,cens,4,earliest_conception_date,Conception leading to a live birth within 3 years of T0
+d4_fup_father,2,cens,5,no_livebirth_conception,Reached 3 years of follow-up without conception leading to a live birth
+d4_fup_child,1,cens,1,diagnosis_autism,Diagnosis of autism
+d4_fup_child,1,cens,2,diagnosis_adhd,Diagnosis of ADHD
+d4_fup_child,1,cens,3,death_child,Death of offspring after birth
+d4_fup_child,1,cens,4,major_congenital_malformation,Major congenital malformation
+d4_fup_child,1,cens,5,disenrolment_database_child,Loss to follow-up (disenrollment or migration)
+d4_fup_child,1,cens,6,end_study_period_child,End of study period
+d4_fup_child,1,cens,7,age_8_years_old,Reached 8 years of age
+d4_fup_child,1,cens,8,end_of_data_collection_child,End of data collection
+d4_fup_child,1,cens,9,treatment_switch,Father switched treatment prior to conception
+d4_fup_child,2,cens,1,diagnosis_autism,Diagnosis of autism
+d4_fup_child,2,cens,2,diagnosis_adhd,Diagnosis of ADHD
+d4_fup_child,2,cens,3,death_child,Death of offspring after birth
+d4_fup_child,2,cens,4,major_congenital_malformation,Major congenital malformation
+d4_fup_child,2,cens,5,disenrolment_database_child,Loss to follow-up (disenrollment or migration)
+d4_fup_child,2,cens,6,end_study_period_child,End of study period
+d4_fup_child,2,cens,7,age_8_years_old,Reached 8 years of age
+d4_fup_child,2,cens,8,end_of_data_collection_child,End of data collection
+d4_fup_child,2,cens,9,treatment_stop_more_than_3_months,Father discontinued treatment > 3 months prior to conception
+d4_fup_child,2,cens,10,treatment_switch,Father switched treatment prior to conception

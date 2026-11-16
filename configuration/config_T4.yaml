@@ -1,0 +1,38 @@
+# ---------------------------------------------------
+# T4 directories
+# ---------------------------------------------------
+
+# ---------------------------------------------------
+# Clean previous run
+# ---------------------------------------------------
+cleanup:
+  intermediate_data_file: true
+  
+# ---------------------------------------------------  
+# T4 directories
+# ---------------------------------------------------
+T4:
+  name: "statistical_analysis"
+  root: transformations/T4_statistical_analysis
+  intermediate: intermediate_data_file
+  config: configuration
+  source_code: source_code
+  functions: source_code/functions
+  metadata: metadata
+
+# ---------------------------------------------------
+# T4 Substeps
+# ---------------------------------------------------
+substep:
+  create_attrition_tables: true
+  create_sequential_trials_table: true
+  create_fup_tables: true
+  compute_d4_StudyCohort_IPTW: true
+  compute_mother_weights: true
+  compute_ipsmw: true
+  combine_weights: true
+  create_iptw_tables: true
+  create_plot_allocation_table_2: true
+  create_imputation_diagnostics: true
+  compute_outcome_analyses: true
+  create_missing_covariate_diagnostics: true

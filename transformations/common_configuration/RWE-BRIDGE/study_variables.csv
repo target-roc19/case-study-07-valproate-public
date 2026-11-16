@@ -1,0 +1,41 @@
+variable_id,concept_id,concept_source,cohort,exposure,outcome,covariate,eligibility,data_type,missing_set_to,start_look_back,end_look_back,date_extraction_func,variable_description
+SV_VALPROATE,DP_VALPROATE,drug codelist,males,TRUE,FALSE,FALSE,FALSE,BOOL,FALSE,0,0,,Valproate
+SV_LEVETIRACETAM,DP_LEVETIRACETAM,drug codelist,males,TRUE,FALSE,FALSE,FALSE,BOOL,FALSE,0,0,,Levetiracetam
+SV_AGE_FATHER,AGE,preprocessed_concept,males,FALSE,FALSE,TRUE,FALSE,INTEGER,NA,0,0,,Age males
+SV_AGE_BETWEEN_18_50,AGE_BETWEEN_18_50,preprocessed_concept,males,FALSE,FALSE,TRUE,TRUE,BOOL,FALSE,-99999999,0,,Age is between 18 and 50 years
+SV_SEX,sex_at_instance_creation,D3_SPELLS,males,FALSE,FALSE,TRUE,TRUE,CHARACTER,NA,-99999999,0,,Sex
+SV_GENEPILEPSY,N_GENEPILEPSY_COV,codelist,males,FALSE,FALSE,TRUE,TRUE,BOOL,FALSE,-99999999,0,latest,Generalised epilepsy
+SV_CONTRA_VALPROATE,CONTRA_VALPROATE,preprocessed_concept,males,FALSE,FALSE,TRUE,TRUE,BOOL,FALSE,-99999999,0,latest,Contraindications valproate
+SV_INFERTILITY,P_MINFERTILITY_COV,codelist,males,FALSE,FALSE,TRUE,TRUE,BOOL,FALSE,-99999999,0,latest,Infertility
+SV_DEATH,DEATH,preprocessed_concept,offspring,FALSE,TRUE,FALSE,FALSE,BOOL,FALSE,birth_date,8 years,,Death after livebirth
+SV_MAJORCA,MAJORCA,preprocessed_concept,offspring,FALSE,TRUE,FALSE,FALSE,BOOL,FALSE,birth_date,8 years,first,Major congenital malformations
+SV_MAJORCA_CAT,MAJORCA_CAT,preprocessed_concept,offspring,FALSE,FALSE,FALSE,FALSE,BOOL,FALSE,birth_date,8 years,first,Major congenital malformations
+SV_AUTISM,Ment_AUTISM_AESI,codelist,offspring,FALSE,TRUE,FALSE,FALSE,BOOL,FALSE,birth_date,8 years,first,Autism
+SV_ADHD,Ment_ADHD_AESI,codelist,offspring,FALSE,TRUE,FALSE,FALSE,BOOL,FALSE,birth_date,8 years,first,ADHD
+SV_CALENDAR_TIME,CALENDAR_TIME,preprocessed_concept,males,FALSE,FALSE,TRUE,FALSE,CATEGORICAL,NA,0,0,,Calender time
+SV_PSYCHIATRIC_FATHER,PSYCHIATRIC,preprocessed_concept,males,FALSE,FALSE,TRUE,FALSE,BOOL,FALSE,-365,0,latest,History of psychiatric disorders of males
+SV_BMI,BMI,preprocessed_concept,males,FALSE,FALSE,TRUE,FALSE,INTEGER,NA,-365,0,latest,BMI
+SV_OBESITY,OBESITY,preprocessed_concept,males,FALSE,FALSE,TRUE,FALSE,BOOL,FALSE,-365,0,latest,Obesity
+SV_MILDLIVERDYS,D_MILDLIVERDISEASE_COV,codelist,males,FALSE,FALSE,TRUE,FALSE,BOOL,FALSE,-365,0,latest,Mild liver dysfunction
+SV_ASM_PREVIOUS,ASM_PREVIOUS,preprocessed_concept,males,FALSE,FALSE,TRUE,FALSE,CATEGORICAL,'None',-365,0,count_category_select_highest,Previous exposure to anti-seizure medication
+SV_ASM_OTHER,DP_OTHER_ASM,codelist,males,FALSE,FALSE,TRUE,FALSE,BOOL,FALSE,,,,Post exposure to anti-seizure medication
+SV_TERATOGENIC_FATHER,DP_TERATOGEN,drug codelist,males,FALSE,FALSE,TRUE,FALSE,BOOL,FALSE,-365,0,latest,Teratogenic drug use father
+SV_ALCOHOL_ABUSE,Ment_ALCABUSE_COV,codelist,males,FALSE,FALSE,TRUE,FALSE,BOOL,FALSE,-365,0,latest,Alcohol abuse
+SV_SMOKING_FATHER,L_SMOKESTATUS_COV,codelist,males,FALSE,FALSE,TRUE,FALSE,BOOL,FALSE,-365,0,latest,Smoking
+SV_AGE_MOTHER,AGE,preprocessed_concept,mother,FALSE,FALSE,TRUE,FALSE,INTEGER,NA,livebirth - 9 months,livebirth - 9 months,,Age mother
+SV_BMI_MOTHER,BMI,preprocessed_concept,mother,FALSE,FALSE,TRUE,FALSE,INTEGER,NA,-365,livebirth - 9 months,latest,BMI
+SV_OBESITY_MOTHER,OBESITY,preprocessed_concept,mother,FALSE,FALSE,TRUE,FALSE,BOOL,FALSE,-365,livebirth - 9 months,latest,Obesity
+SV_GENEPILEPSY_MOTHER,N_GENEPILEPSY_COV,codelist,mother,FALSE,FALSE,TRUE,FALSE,BOOL,FALSE,"""-inf""",0,latest,Generalised epilepsy
+SV_DIABETES,E_DM12_COV,codelist,mother,FALSE,FALSE,TRUE,FALSE,BOOL,FALSE,-365,livebirth - 9 months,latest,Diabetes
+SV_GESTATIONALDIAB,P_GESTDIAB_COV,codelist,mother,FALSE,FALSE,TRUE,FALSE,BOOL,FALSE,-9 months,livebirth,latest,Gestational diabetes
+SV_SMOKING_MOTHER,SMOKING,preprocessed_concept,mother,FALSE,FALSE,TRUE,FALSE,BOOL,FALSE,-9 months,livebirth,latest,Smoking during pregnancy
+SV_TERATOGENIC_MOTHER,DP_TERATOGEN,drug codelist,mother,FALSE,FALSE,TRUE,FALSE,BOOL,FALSE,-9 months,livebirth,latest,Teratogenic drug use mother
+SV_PSYCHIATRIC_MOTHER,PSYCHIATRIC,preprocessed_concept,mother,FALSE,FALSE,TRUE,FALSE,BOOL,FALSE,-365,livebirth - 9 months,latest,Mental disorders mothers
+SV_VALPROATECONCOMIMED,DP_VALPROATECONCOMIMED,drug codelist,mother,FALSE,FALSE,TRUE,FALSE,BOOL,FALSE,-365,livebirth,,Concomitant medications associated with valproate indicated psychiatric conditions
+SV_NEUROPSYCHAECONCOM,DP_NEUROPSYCHAECONCOM,drug codelist,mother,FALSE,FALSE,TRUE,FALSE,BOOL,FALSE,-365,livebirth,,Concomitant medicines to neuropsychiatric adverse event
+SV_INFECTIONS_PREG,INFECTIONS_PREG,preprocessed_concept,mother,FALSE,FALSE,TRUE,FALSE,BOOL,FALSE,-9 months,livebirth,latest,TORCHES VLAP
+SV_IS_ON_VPA,IS_ON_VPA,preprocessed_concept,males,TRUE,FALSE,FALSE,TRUE,BOOL,FALSE,0,0,,valproate
+SV_IS_ON_LEV,IS_ON_LEV,preprocessed_concept,males,TRUE,FALSE,FALSE,TRUE,BOOL,FALSE,0,0,,Levetiracetam
+SV_IS_ON_OT_ASM,IS_ON_OT_ASM,preprocessed_concept,males,FALSE,FALSE,TRUE,TRUE,BOOL,FALSE,0,0,,other anti seizure medication
+SV_ENROLLED_12M,ENROLLED_12M,preprocessed_concept,males,FALSE,FALSE,TRUE,TRUE,BOOL,FALSE,-99999999,0,,Atleast 12 months enrolled
+SV_BMI_FLAG,BMI_FLAG,preprocessed_concept,males,FALSE,FALSE,TRUE,TRUE,BOOL,NA,-365,0,latest,BMI flag for eligibility

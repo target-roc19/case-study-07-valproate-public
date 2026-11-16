@@ -1,0 +1,4 @@
+description,tab_group,n_pat_exp,n_out_exp,py_exp,ir_est_exp,ir_lb_exp,ir_ub_exp,n_pat_con,n_out_con,py_con,ir_est_con,ir_lb_con,ir_ub_con,rr_est_crude,rr_lb_crude,rr_ub_crude,rr_est_adj,rr_lb_adj,rr_ub_adj
+Table 8 Cumulative Incidence of the outcome in valproate and levetiracetam respectively per estimand,8,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0
+Table 9 Crude and Adjusted Cumulative Incidence Ratio and their 95% CI for the main analysis,9,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1
+Table 13 Best/Worst case scenario sensitivity analysis,13,1,1,1,0,0,0,1,1,1,0,0,0,1,1,1,1,1,1

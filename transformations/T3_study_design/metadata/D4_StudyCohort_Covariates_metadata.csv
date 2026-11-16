@@ -1,0 +1,10 @@
+var,type,expectedCat,label,parent,parent_cat,header
+SV_AGE_FATHER,NUM1,,Age of male (years),,,Demographics
+SV_CALENDAR_YEAR,CAT,get study_years_all,Calendar year at T0,,,
+SV_PSYCHIATRIC_FATHER,TF,,History of psychiatric disorders (male),,,Prior history of disease and medication and other risk Factors 
+SV_OBESITY,TF,,Obesity,,,
+SV_ASM_PREVIOUS,CAT,"0,1,2,3,4",Previous exposure to antiseizure medication,,,
+SV_TERATOGENIC_FATHER,TF,,Use of know teratogenic medication (male),,,
+SV_ALCOHOL_ABUSE,TF,,Alcohol abuse,,,
+SV_SMOKING_FATHER,TF,,Smoking (male),,,
+SV_AGE_FATHER_CAT,CAT,get age_male_categories,Age (in four 10-year categories),,,

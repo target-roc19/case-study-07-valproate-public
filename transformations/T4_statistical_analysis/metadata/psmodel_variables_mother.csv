@@ -1,0 +1,12 @@
+var;vartype;reference_category;label;force_in;force_out
+SV_AGE_MOTHER_CAT;CAT;28_37;Age of mother (years);TRUE;FALSE
+SV_DIABETES;TF;FALSE;Diabetes;TRUE;FALSE
+SV_GESTATIONALDIAB;TF;FALSE;Gestational diabetes;TRUE;FALSE
+SV_SMOKING_MOTHER;TF;FALSE;Smoking (mother);TRUE;FALSE
+SV_OBESITY_MOTHER;TF;FALSE;Obesity (mother);TRUE;FALSE
+SV_PSYCHIATRIC_MOTHER;TF;FALSE;Psychiatric history (mother);TRUE;FALSE
+SV_GENEPILEPSY_MOTHER;TF;FALSE;Generalised epilepsy (mother);TRUE;FALSE
+SV_TERATOGENIC_MOTHER;TF;FALSE;Teratogenic medication (mother);TRUE;FALSE
+SV_NEUROPSYCHAECONCOM;TF;FALSE;Concomitant medicines to neuropsychiatric adverse event;TRUE;FALSE
+SV_VALPROATECONCOMIMED;TF;FALSE;Concomitant valproate medication;TRUE;FALSE
+SV_INFECTIONS_PREG;TF;FALSE;Infections during pregnancy;TRUE;FALSE

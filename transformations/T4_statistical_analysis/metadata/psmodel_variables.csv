@@ -1,0 +1,9 @@
+var;vartype;reference_category;label;force_in;force_out
+SV_AGE_FATHER_CAT;CAT;28_37;Age (in four 10-year categories);TRUE;FALSE
+SV_CALENDAR_TIME_INT;NUM;FALSE;Number of months since 1st Jan 2010;TRUE;FALSE
+SV_PSYCHIATRIC_FATHER;TF;FALSE;History of psychiatric disorders (male);TRUE;FALSE
+SV_OBESITY;TF;FALSE;Obesity;TRUE;FALSE
+SV_MILDLIVERDYS;TF;FALSE;Mild liver dysfunction;FALSE;TRUE
+SV_TERATOGENIC_FATHER;TF;FALSE;Use of knwon teratogenic medication (male);TRUE;FALSE
+SV_ALCOHOL_ABUSE;TF;FALSE;Alcohol abuse;TRUE;FALSE
+SV_SMOKING_FATHER;TF;FALSE;Smoking (male);TRUE;FALSE

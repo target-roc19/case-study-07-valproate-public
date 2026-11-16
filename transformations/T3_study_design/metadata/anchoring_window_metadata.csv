@@ -1,0 +1,35 @@
+variable_id,concept_id,concept_source,cohort,exposure,outcome,covariate,eligibility,missing_set_to,variable_description,start_offset,end_offset,variable_type,anchor_variable,window_name,constructor,selector,exclude_var
+SV_AGE_FATHER,AGE,preprocessed_concept,males,FALSE,FALSE,TRUE,FALSE,NA,Age males,0,0,INT,T0,lookback,GENERIC,LATEST,TRUE
+SV_AGE_BETWEEN_18_50,AGE_BETWEEN_18_50,preprocessed_concept,males,FALSE,FALSE,TRUE,TRUE,FALSE,Age is between 18 and 50 years,-99999999,0,BOOL,T0,lookback,GENERIC,LATEST,TRUE
+SV_SEX,sex_at_instance_creation,D3_SPELLS,males,FALSE,FALSE,TRUE,TRUE,NA,Sex,-99999999,0,CHARACTER,T0,lookback,GENERIC,LATEST,TRUE
+SV_GENEPILEPSY,N_GENEPILEPSY_COV,codelist,males,FALSE,FALSE,TRUE,TRUE,FALSE,Generalised epilepsy,-99999999,0,BOOL,T0,lookback,GENERIC,LATEST,FALSE
+SV_CONTRA_VALPROATE,CONTRA_VALPROATE,preprocessed_concept,males,FALSE,FALSE,TRUE,TRUE,FALSE,Contraindications valproate,-99999999,0,BOOL,T0,lookback,GENERIC,LATEST,FALSE
+SV_INFERTILITY,P_MINFERTILITY_COV,codelist,males,FALSE,FALSE,TRUE,TRUE,FALSE,Infertility,-99999999,0,BOOL,T0,lookback,GENERIC,LATEST,FALSE
+SV_DEATH,DEATH,preprocessed_concept,offspring,FALSE,TRUE,FALSE,FALSE,FALSE,Death after livebirth,0,2922,DATE,date_of_birth,risk,GENERIC,EARLIEST,FALSE
+SV_MAJORCA,MAJORCA_CAT,preprocessed_concept,offspring,FALSE,TRUE,FALSE,FALSE,FALSE,Major congenital malformations,0,2922,DATE,date_of_birth,risk,GENERIC,EARLIEST,FALSE
+SV_AUTISM,MENT_AUTISM_AESI,codelist,offspring,FALSE,TRUE,FALSE,FALSE,FALSE,Autism,0,2922,DATE,date_of_birth,risk,GENERIC,EARLIEST,FALSE
+SV_ADHD,MENT_ADHD_AESI,codelist,offspring,FALSE,TRUE,FALSE,FALSE,FALSE,ADHD,0,2922,DATE,date_of_birth,risk,GENERIC,EARLIEST,FALSE
+SV_CALENDAR_TIME,CALENDAR_TIME,preprocessed_concept,males,FALSE,FALSE,TRUE,FALSE,NA,Calender time,0,0,NUM,T0,lookback,GENERIC,LATEST,FALSE
+SV_PSYCHIATRIC_FATHER,PSYCHIATRIC,preprocessed_concept,males,FALSE,FALSE,TRUE,FALSE,FALSE,History of psychiatric disorders of males,-365,0,BOOL,T0,lookback,GENERIC,LATEST,FALSE
+SV_BMI,BMI,preprocessed_concept,males,FALSE,FALSE,TRUE,FALSE,NA,BMI,-365,0,INT,T0,lookback,GENERIC,LATEST,FALSE
+SV_OBESITY,OBESITY,preprocessed_concept,males,FALSE,FALSE,TRUE,FALSE,FALSE,Obesity,-365,0,BOOL,T0,lookback,GENERIC,LATEST,FALSE
+SV_MILDLIVERDYS,D_MILDLIVERDISEASE_COV,codelist,males,FALSE,FALSE,TRUE,FALSE,FALSE,Mild liver dysfunction,-365,0,BOOL,T0,lookback,GENERIC,LATEST,FALSE
+SV_ASM_PREVIOUS,ASM_PREVIOUS,preprocessed_concept,males,FALSE,FALSE,TRUE,FALSE,NONE,Previous exposure to anti-seizure medication,-365,0,INT,T0,lookback,GENERIC,LATEST,FALSE
+SV_ASM_OTHER,DP_OTHER_ASM,codelist,males,FALSE,FALSE,FALSE,FALSE,FALSE,Post exposure to anti-seizure medication,0,1370,BOOL,T0,risk,GENERIC,COUNT,FALSE
+SV_TERATOGENIC_FATHER,DP_TERATOGEN,drug codelist,males,FALSE,FALSE,TRUE,FALSE,FALSE,Teratogenic drug use father,-365,0,BOOL,T0,lookback,GENERIC,LATEST,FALSE
+SV_ALCOHOL_ABUSE,MENT_ALCABUSE_COV,codelist,males,FALSE,FALSE,TRUE,FALSE,FALSE,Alcohol abuse,-365,0,BOOL,T0,lookback,GENERIC,LATEST,FALSE
+SV_SMOKING_FATHER,L_SMOKESTATUS_COV,codelist,males,FALSE,FALSE,TRUE,FALSE,FALSE,Smoking,-365,0,BOOL,T0,lookback,GENERIC,LATEST,FALSE
+SV_AGE_MOTHER,AGE,preprocessed_concept,mother,FALSE,FALSE,TRUE,FALSE,NA,Age mother,0,0,INT,estimated_conception_date,lookback,GENERIC,LATEST,TRUE
+SV_BMI_MOTHER,BMI,preprocessed_concept,mother,FALSE,FALSE,TRUE,FALSE,NA,BMI,-365,0,INT,estimated_conception_date,lookback,GENERIC,LATEST,TRUE
+SV_OBESITY_MOTHER,OBESITY,preprocessed_concept,mother,FALSE,FALSE,TRUE,FALSE,FALSE,Obesity,-365,0,BOOL,estimated_conception_date,lookback,GENERIC,LATEST,FALSE
+SV_GENEPILEPSY_MOTHER,N_GENEPILEPSY_COV,codelist,mother,FALSE,FALSE,TRUE,FALSE,FALSE,Generalised epilepsy,-99999999,0,BOOL,date_of_birth,lookback,GENERIC,LATEST,FALSE
+SV_DIABETES,E_DM12_COV,codelist,mother,FALSE,FALSE,TRUE,FALSE,FALSE,Diabetes,-365,0,BOOL,estimated_conception_date,lookback,GENERIC,LATEST,FALSE
+SV_GESTATIONALDIAB,P_GESTDIAB_COV,codelist,mother,FALSE,FALSE,TRUE,FALSE,FALSE,Gestational diabetes,0,0,BOOL,date_of_birth,lookback,in_current_pregnancy,LATEST,FALSE
+SV_SMOKING_MOTHER,SMOKING,preprocessed_concept,mother,FALSE,FALSE,TRUE,FALSE,FALSE,Smoking during pregnancy,0,0,BOOL,date_of_birth,lookback,in_current_pregnancy,LATEST,FALSE
+SV_TERATOGENIC_MOTHER,DP_TERATOGEN,drug codelist,mother,FALSE,FALSE,TRUE,FALSE,FALSE,Teratogenic drug use mother,0,0,BOOL,date_of_birth,lookback,in_current_pregnancy,LATEST,FALSE
+SV_PSYCHIATRIC_MOTHER,PSYCHIATRIC,preprocessed_concept,mother,FALSE,FALSE,TRUE,FALSE,FALSE,Mental disorders mothers,-365,0,BOOL,estimated_conception_date,lookback,GENERIC,LATEST,FALSE
+SV_VALPROATECONCOMIMED,DP_VALPROATECONCOMIMED,drug codelist,mother,FALSE,FALSE,TRUE,FALSE,FALSE,Concomitant medications associated with valproate indicated psychiatric conditions,-365,0,BOOL,date_of_birth,lookback,GENERIC,LATEST,FALSE
+SV_NEUROPSYCHAECONCOM,DP_NEUROPSYCHAECONCOM,drug codelist,mother,FALSE,FALSE,TRUE,FALSE,FALSE,Concomitant medicines to neuropsychiatric adverse event,-365,0,BOOL,date_of_birth,lookback,GENERIC,LATEST,FALSE
+SV_INFECTIONS_PREG,INFECTIONS_PREG,preprocessed_concept,mother,FALSE,FALSE,TRUE,FALSE,FALSE,TORCHES VLAP,0,0,BOOL,date_of_birth,lookback,in_current_pregnancy,LATEST,FALSE
+treatment_discontinuation,TREATMENT_DISCONTINUATION,preprocessed_concept,males,FALSE,FALSE,FALSE,FALSE,FALSE,treatment discontinuation,0,1370,DATE,T0,risk,GENERIC,EARLIEST,FALSE
+treatment_switch,TREATMENT_SWITCH,preprocessed_concept,males,FALSE,FALSE,FALSE,FALSE,FALSE,treatment switch,0,1370,DATE,T0,risk,GENERIC,EARLIEST,FALSE

@@ -1,0 +1,14 @@
+analysis_index,analysis_description,analysis_type,estimand,source_fup,source_weight,weight_col,enabled,listed_by,pooling_method,pooling_condition,risk_type
+1,Main analysis (estimand 1) with multiple imputation,main,1,D4_StudyCohortFupChildMI,D4_StudyCohort_IPTW_Mother,stabilized_trunc_iptw,TRUE,imputation_id,rubin,,incidence
+2,Supplemental analysis (estimand 2) with multiple imputation,supplemental,2,D4_StudyCohortFupChildMI,D4_StudyCohort_IPTW_Mother,stabilized_trunc_iptw,TRUE,imputation_id,rubin,,incidence
+1a,Sensitivity analysis (estimand 1) with IPSMW,sensitivity main,1,D4_StudyCohortFupChildMI,D4_StudyCohort_CombinedWeights,stabilized_trunc_iptw_ipsmw,TRUE,imputation_id,rubin,,incidence
+1b,Sensitivity analysis (estimand 1) with best-worst case scenario,sensitivity main,1,D4_StudyCohortFupChildBW,D4_StudyCohort_IPTW_Mother,stabilized_trunc_iptw,TRUE,bw_id,subset,FALSE,incidence
+1c,Sensitivity analysis (estimand 1) with time-varying multiple imputation,sensitivity main,1,D4_StudyCohortFupChildMI_TV,D4_StudyCohort_IPTW_Mother,stabilized_trunc_iptw,TRUE,imputation_id,rubin,,incidence
+1d,Sensitivity analysis (estimand 1) with log-binomial outcome model,sensitivity main,1,D4_StudyCohortFupChildMI,D4_StudyCohort_IPTW_Mother,stabilized_trunc_iptw,TRUE,imputation_id,rubin,,logbinomial
+1e,Sensitivity analysis (estimand 1) balancing maternal and male risk factors,sensitivity main,1,D4_StudyCohortFupChildMI,D4_StudyCohort_CombinedWeights,stabilized_trunc_iptw_mother,FALSE,imputation_id,rubin,,incidence
+1f,Sensitivity analysis (estimand 1) balancing maternal and paternal risk factors,sensitivity main,1,D4_StudyCohortFupChildMI,D4_StudyCohort_IPTW_Combined_Mother_Father_ChildCohort,stabilized_trunc_iptw,TRUE,imputation_id,rubin,,incidence
+2a,Sensitivity analysis (estimand 2) with IPSMW,sensitivity supplemental,2,D4_StudyCohortFupChildMI,D4_StudyCohort_CombinedWeights,stabilized_trunc_iptw_ipsmw,FALSE,imputation_id,rubin,,incidence
+2b,Sensitivity analysis (estimand 2) with best worst case scenario,sensitivity supplemental,2,D4_StudyCohortFupChildBW,D4_StudyCohort_IPTW_Mother,stabilized_trunc_iptw,FALSE,bw_id,subset,bw_id == 1,incidence
+2c,Sensitivity analysis (estimand 2) with time-varying multiple imputation,sensitivity supplemental,2,D4_StudyCohortFupChildMI,D4_PS_Weights_IPTW_tv,stabilized_trunc_iptw,FALSE,imputation_id,rubin,,incidence
+2d,Sensitivity analysis (estimand 2) with log-binomial outcome model,sensitivity supplemental,2,D4_StudyCohortFupChildMI,D4_StudyCohort_IPTW_Mother,stabilized_trunc_iptw,FALSE,imputation_id,rubin,,logbinomial
+2e,Sensitivity analysis (estimand 2) balancing maternal risk factors,sensitivity supplemental,2,D4_StudyCohortFupChildMI,D4_StudyCohort_IPTW_Combined_Mother_Father_ChildCohort,stabilized_trunc_iptw_mother,FALSE,imputation_id,rubin,,incidence

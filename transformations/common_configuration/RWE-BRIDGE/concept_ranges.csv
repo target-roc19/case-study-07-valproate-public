@@ -1,0 +1,7 @@
+concept_id,new_value,lower_range,upper_range,description
+PP_AGE_CAT,0,0,18,0_17
+PP_AGE_CAT,1,18,28,18_27
+PP_AGE_CAT,2,28,38,28_37
+PP_AGE_CAT,3,38,48,38_47
+PP_AGE_CAT,4,48,56,48_55
+PP_AGE_CAT,5,56,120,56_plus

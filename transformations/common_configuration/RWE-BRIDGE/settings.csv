@@ -1,0 +1,15 @@
+variable_name;dap_name;scope;data_type;value;comment
+recommended_end_date;VID;dap_specific;DATE;;
+start_study_date;VID;generic;DATE;01/01/2010;
+end_study_date;VID;generic;DATE;31/12/2024;
+start_fup_males;VID;generic;DATE;01/01/2010;
+end_fup_males;VID;generic;DATE;31/03/2016;
+main_censoring_date;VID;dap_specific;DATE;;min of recommended_end_date and end_study_date
+since_when_data_complete;VID;dap_specific;DATE;;used for filtering records prior this date
+gap_allowed_thisdatasource;VID;dap_specific;DATE;;
+year_length;VID;generic;INTEGER;365.25;
+month_length;VID;generic;INTEGER;30.25;
+masking_min;VID;dap_specific;INTEGER;5;
+masking_max;VID;dap_specific;INTEGER;NA;
+start_eligibility;VID;generic;DATE;01/01/2010;
+end_eligibility;VID;generic;DATE;31/03/2016;

@@ -1,0 +1,337 @@
+DEAP_configuration:
+  name: VID
+  data_instance: data/D2_cdm/PEDIANET_20260918
+  #data_instance: # ENTER PATH TO LOCAL CDM HERE
+  database_path: ~
+  data_model: ConcePTION
+
+set_db:
+  cdm_metadata: transformations/common_configuration/CDM_metadata.rds
+  database_loader_config: configuration/config_set_db.json
+  output: data/D2_cdm/d2.duckdb
+process_codelist:
+  events_codelist_latest: transformations/common_configuration/RWE-BRIDGE/full_codelist.csv
+  medicines_codelist_latest: transformations/common_configuration/RWE-BRIDGE/drug_proxies.csv
+  vaccine_codelist_latest: ~
+  dap_specific_concept_map: transformations/common_configuration/RWE-BRIDGE/dap_specific_concept_map.csv
+  output_codelist_events: transformations/T2_semantic_harmonization/intermediate_data_file/dap_specific_codelist_events.rds
+  output_codelist_medicines: transformations/T2_semantic_harmonization/intermediate_data_file/dap_specific_codelist_medicines.rds
+  output_codelist_procedures: transformations/T2_semantic_harmonization/intermediate_data_file/dap_specific_codelist_procedures.rds
+  output_map_missing_infomation: transformations/T2_semantic_harmonization/intermediate_data_file/dap_specific_concept_map_missing_infomation.rds
+  output_concept_map: transformations/T2_semantic_harmonization/intermediate_data_file/dap_specific_concept_map.rds
+create_simple_concepts:
+  since_when_data_complete: transformations/T2_semantic_harmonization/intermediate_data_file/since_when_data_complete.rds
+  d3_spells: data/D3_study_variables/D3_SPELLS.parquet
+  medicines_field_by_deap:
+    CPRD:
+      code_col: medicinal_product_id
+      coding_system: PRODCODEID
+    default:
+      code_col: medicinal_product_atc_code
+      coding_system: ATC
+create_complex_concepts:
+  input_dir: data/D3_study_variables/D3_CONCEPTS_parquet
+  spells_dir: data/D3_study_variables/D3_SPELLS.parquet
+  dir_d2_db: data/D2_cdm/d2.duckdb
+  output_dir: data/D3_study_variables/D3_CONCEPTS_parquet
+  concept_meaning: transformations/common_configuration/RWE-BRIDGE/concept_meaning.csv
+  functions: transformations/T2_semantic_harmonization/source_code/functions
+  sql: transformations/T2_semantic_harmonization/source_code/sql
+process_persons:
+  persons: data/D2_cdm/d2.duckdb
+  cdm_source: data/D2_cdm/d2.duckdb
+  source_file: ~
+  output_persons: transformations/T2_semantic_harmonization/intermediate_data_file
+process_child_linkage:
+   D3_person_file: data/D3_study_variables/D3_PERSONS.parquet
+   person_relationship_file: PERSON_RELATIONSHIPS.csv
+   survey_id_file: SURVEY_ID.csv
+   survey_observations_file: SURVEY_OBSERVATIONS.csv
+   output_child_linkage: transformations/T2_semantic_harmonization/intermediate_data_file
+process_observation_periods:
+  D3_person_file: data/D3_study_variables/D3_PERSONS.parquet
+  source_file: ~
+  observation_periods_file: data/D2_cdm/d2.duckdb
+get_counts_all_concepts: ~
+
+### T3
+
+create_univariate_episodes:
+  d3_spells_file_name: D3_SPELLS.parquet
+  d3_fatherchild_file_name: D3_FatherChild.parquet
+  d3_concepts: D3_CONCEPTS_parquet
+  output_hive_path: D3_UNIVARIATE_EPISODES_parquet
+  batch_size: 5000
+
+create_multivariate_episodes:
+  d3_univariate_episodes: D3_UNIVARIATE_EPISODES_parquet
+  output_path: D3_MULTIVARIATE_EPISODES.parquet
+  batch_size: 5000
+
+create_cohort: 
+  input:
+    dir_d3: data/D3_study_variables
+    input_file_name: D3_ELIGIBILITY.fst
+  bootstrapping: FALSE
+  n_bootstrap_samples: 3
+  output:
+    dir_d4: data/D4_analytic_datasets
+    output_file_name: D4_StudyCohort.parquet
+    output_file_name_child: D4_StudyCohortChild.parquet
+  test_mode: false
+
+create_eligibility:
+  input:
+    dir: data/D3_study_variables # test, change to data/D3_study_variables
+    multi_file_name: D3_MULTIVARIATE_EPISODES.parquet # D3_multivariate_episodes/D3_multivariate_episodes.csv # change to D3_multivariate_episodes.parquet
+    father_child_file_name: D3_FatherChild.parquet
+  output:
+    dir: data/D3_study_variables
+    file_name: D3_ELIGIBILITY.fst
+
+create_anchored_variables:
+  input:
+    cohort_dir: data/D4_analytic_datasets
+    cohort_file: D4_StudyCohort.parquet
+    cohort_file_child: D4_StudyCohortChild.parquet
+    metadata_dir: transformations/T3_study_design/metadata
+    metadata_file: anchoring_window_metadata.csv
+    concepts_dir: data/D3_study_variables/D3_CONCEPTS_parquet
+  config:
+    anchor_males: true
+    anchor_children: true
+    anchor_mothers: true
+  output:
+    dir: data/D4_analytic_datasets
+    baseline_cov_file: D4_StudyCohortCovariates.parquet
+    baseline_cov_file_mother: D4_StudyCohortCovariatesMother.parquet
+    tv_cov_file: D4_StudyCohortTimeVaryingCovariates.parquet
+    fup_file: D4_StudyCohortFup.parquet
+    fup_file_child: D4_StudyCohortFupChild.parquet
+    anchoring_dir_male: data/D3_study_variables/D3_ANCHORED_VARIABLES_male_parquet
+    anchoring_dir_mother: data/D3_study_variables/D3_ANCHORED_VARIABLES_mother_parquet
+    anchoring_dir_child: data/D3_study_variables/D3_ANCHORED_VARIABLES_child_parquet
+  test_mode: false
+
+# ---------------------------------------------------
+# impute_outcomes run configuration
+# --------------------------------------------------
+
+
+impute_outcomes:
+  modes:
+    - Main
+    - Supplement
+  input:
+    fup_file: D4_StudyCohortFupChild
+    cov_file: D4_StudyCohortCovariates
+    ext: parquet
+  model:
+    n_imputations: 10
+    maxit: 50
+    seed: 42
+    method: "logreg"
+    predictors:
+      - group
+      - SV_AGE_FATHER_CAT
+      # - SV_CALENDAR_TIME_INT
+      - SV_PSYCHIATRIC_FATHER
+      - SV_OBESITY
+ #     - SV_MILDLIVERDYS
+      # - SV_ASM_PREVIOUS
+      - SV_TERATOGENIC_FATHER
+      - SV_ALCOHOL_ABUSE
+      - SV_SMOKING_FATHER
+    additional_predictors:
+      - SV_CALENDAR_TIME_INT
+  output:
+    fup_mi_file: D4_StudyCohortFupChildMI
+    fup_bw_file: D4_StudyCohortFupChildBW
+    ext: parquet
+  table_output:
+    dir: data/D5_results
+    table_name: D5_Table12_Estimand1
+    ext: csv
+
+# ---------------------------------------------------
+# outcome_analysis_lookup run configuration
+# ---------------------------------------------------
+
+outcome_analysis_lookup:
+  input:
+    ext: parquet
+  metadata:
+    outcome_analysis_types:   outcome_analysis_types.csv
+    outcome_parameter_lookup: outcome_parameter_lookup.csv
+  aesi_name:  "composite_outcome"
+  aesi_label: "Composite child outcome: ADHD, autism, major congenital anomaly or death"
+  scale_IR:   1
+  n_bootstrap: 500
+  seed: 42
+  resample_col: father_id
+  output:
+    name: D5_CohortAnalyticLookup
+    table8_name: Table8
+    table9_name: Table9
+    table13_name: Table13
+    ext: csv
+
+# ---------------------------------------------------
+# create_baseline_tables run configuration
+# ---------------------------------------------------
+
+create_missing_covariate_diagnostics:
+  input:
+    cohort_dir: data/D4_analytic_datasets
+    cohort_file: D4_StudyCohortCovariates.parquet
+  output:
+    dir_d5: data/D5_results
+    file_name: D5_Missing_Covariate_Diagnostics.csv
+  test_mode: false
+
+create_attrition_tables:
+  input:
+    dir_d3: data/D3_study_variables
+    input_file_name: D3_ELIGIBILITY.fst
+  output:
+    dir_d5: data/D5_results
+    file_name: D5_Attrition_Table1.csv
+
+create_sequential_trials_table:
+  input:
+    dir_d4: data/D4_analytic_datasets # for testing, tests/testthat/test_data/D4_StudyCohort
+    file_name_males_cohort: D4_StudyCohort.parquet # D4_StudyCohort_Males.csv # D4_males_cohort.fst 
+    file_name_child_cohort: D4_StudyCohortChild.parquet # for testingD4_StudyCohort_Child.csv # D4_child_cohort.fst 
+  output:
+    dir_d5: data/D5_results
+    file_name: D5_Sequential_Trials.csv
+
+create_plot_allocation_table_2:
+  input:
+    dir_d4: data/D4_analytic_datasets # for testing, tests/testthat/test_data/D4_StudyCohort
+    file_name_males_cohort: D4_StudyCohort.parquet # D4_StudyCohort_Males.csv # D4_males_cohort.fst 
+    file_name_child_cohort: D4_StudyCohortChild.parquet # for testingD4_StudyCohort_Child.csv # D4_child_cohort.fst 
+  output:
+    dir_d5: data/D5_results
+    file_name: D5_plot_allocation_table_2.png
+  test_mode: false
+
+combine_mother_father_covariates_in_children:
+  input:
+    d4_covariates: data/D4_analytic_datasets/D4_StudyCohortCovariates.parquet
+    d4_covariates_mother: data/D4_analytic_datasets/D4_StudyCohortCovariatesMother.parquet
+  output:
+    dir_d4: data/D4_analytic_datasets
+    file_name: D4_StudyCohort_Covariates_Combined_Mother_Father_ChildCohort.parquet
+  test_mode: false
+
+
+compute_d4_StudyCohort_IPTW:
+  d4_covariates: data/D4_analytic_datasets/D4_StudyCohortCovariates.parquet
+  d4_covariates_combined: data/D4_analytic_datasets/D4_StudyCohort_Covariates_Combined_Mother_Father_ChildCohort.parquet
+  ps_variables: transformations/T4_statistical_analysis/metadata/psmodel_variables.csv
+  ps_variables_mother: transformations/T4_statistical_analysis/metadata/psmodel_variables_mother.csv
+  ps_trim_bounds: 
+    - 0.00
+    - 1.00
+  ps_truncation_bounds: 
+    - 0.01
+    - 0.99
+  se_threshold: 10
+  output_d4: data/D4_analytic_datasets
+  output_d4_iptw: D4_StudyCohort_IPTW
+  output_d5_PS_Coef: D5_PS_Coef
+  output_d5_PS_ModelBuilding: D5_PS_ModelBuilding
+  suffix_combined_cohort: "_Combined_Mother_Father_ChildCohort"
+  output_d5: data/D5_results
+  test_mode: false
+  synthetic_data: tests/testthat/D4_StudyCohort_IPTW/input/D4_StudyCohort_Covariates.csv
+
+compute_mother_weights:
+  test_mode: false
+  input:
+    dir_d4: data/D4_analytic_datasets
+    d4_studycohort_child: D4_StudyCohortChild.parquet
+    d4_iptw_male: D4_StudyCohort_IPTW.parquet
+  output:
+    dir: data/D4_analytic_datasets
+    d4_iptw_mothers: D4_StudyCohort_IPTW_Mother.parquet
+
+
+create_iptw_tables:
+  functions_dir: transformations/T4_statistical_analysis/source_code/functions
+  output_dir: data/D5_results
+  # General parameters
+  ps_trim_bounds: 
+    - 0.00
+    - 1.00
+  ps_truncation_bounds: 
+    - 0.01
+    - 0.99
+  males:
+    d4_iptw: data/D4_analytic_datasets/D4_StudyCohort_IPTW.parquet
+    d4_covariates: data/D4_analytic_datasets/D4_StudyCohortCovariates.parquet
+    d5_ps_coef: data/D5_results/D5_PS_Coef.csv
+    ps_variables: transformations/T4_statistical_analysis/metadata/psmodel_variables.csv
+    baseline_metadata: transformations/T3_study_design/metadata/D4_StudyCohort_Covariates_metadata.csv
+  fathers: 
+  mothers:
+    d4_covariates: data/D4_analytic_datasets/D4_StudyCohortCovariatesMother.parquet
+    d4_iptw: data/D4_analytic_datasets/D4_StudyCohort_IPTW_Mother.parquet
+    ps_variables: transformations/T4_statistical_analysis/metadata/psmodel_variables_mother.csv
+    baseline_metadata: transformations/T3_study_design/metadata/D4_StudyCohort_Covariates_mothers_metadata.csv
+  combined_mother_father:
+    d4_iptw: data/D4_analytic_datasets/D4_StudyCohort_IPTW_Combined_Mother_Father_ChildCohort.parquet
+    d4_covariates: data/D4_analytic_datasets/D4_StudyCohort_Covariates_Combined_Mother_Father_ChildCohort.parquet
+    d5_ps_coef: data/D5_results/D5_PS_Coef_Combined_Mother_Father_ChildCohort.csv
+  principal_stratum_models:
+    d4_ipsmw: data/D4_analytic_datasets/D4_StudyCohort_IPSMW.parquet
+    d5_principal_stratum_coef: data/D5_results/D5_PS_Coef_IPSMW.csv
+    principal_stratum_variables: transformations/T4_statistical_analysis/metadata/pstratummodel_variables.csv
+  output_names:
+    table_baseline_descriptives: D5_Table3_Baseline_Descriptives
+    table_estimates_and_prevalance: D5_Table6_Propensity_score_estimates_and_prevalance
+    table_ps_and_iptw_summary: D5_Table7_PS_and_IPTW_Summary_statistics_by_group
+    figure_asd_before_after_weighting: D5_Figure1_ASD_Comparison_BeforeAfter_Weighting
+    figure_ps_density: D5_Figure2_PropensityScoreDensity_by_group
+    figure_distribution_iptw_before_after_truncation: D5_Figure3_IPTW_Distribution_BeforeAfter_Truncation
+    extension_tables: csv
+    extension_figures: png
+
+
+compute_ipsmw:
+  input:
+    dir_d4: data/D4_analytic_datasets
+    cohort_file: D4_StudyCohortCovariates.parquet
+    child_file: D4_StudyCohortChild.parquet
+    cov_file: DD4_StudyCohortCovariates.parquet
+  metadata:
+    ipsmw_variables_file: transformations/T4_statistical_analysis/metadata/pstratummodel_variables.csv
+  output:
+    dir_d4: data/D4_analytic_datasets
+    dir_d5: data/D5_results
+    ipsmw_cohort_file: D4_StudyCohort_IPSMW.parquet
+
+combine_weights:
+  skip_complex_combinations: true
+  input:
+    dir_d4: data/D4_analytic_datasets
+    d4_iptw_mothers: D4_StudyCohort_IPTW_Mother.parquet
+    d4_ipwsm_male: D4_StudyCohort_IPSMW.parquet
+  output:
+    dir: data/D4_analytic_datasets
+    file_name: D4_StudyCohortCombinedWeights.parquet
+
+
+run_hash_log_export: ~
+dir_intermediate_QC:
+  D3_spells: ~
+  D3_persons: ~
+  d3_rsvproducts: ~
+  d3_elegibility: ~
+  
+outputs:
+  dir_d3: data/D3_study_variables
+  dir_d4: data/D4_analytic_datasets
+  dir_d5: data/D5_results
+  dir_d6: data/D6_report

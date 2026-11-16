@@ -1,0 +1,12 @@
+var,type,expectedCat,label,parent,parent_cat,header
+SV_AGE_MOTHER,NUM1,,Age of mother (years),,Demographics,
+SV_DIABETES,TF,,Diabetes,,Comorbidities,
+SV_GESTATIONALDIAB,TF,,Gestational diabetes,,,
+SV_SMOKING_MOTHER,TF,,Smoking (mother),,Lifestyle,
+SV_OBESITY_MOTHER,TF,,Obesity (mother),,Comorbidities,
+SV_PSYCHIATRIC_MOTHER,TF,,Psychiatric history (mother),,Medical History,
+SV_GENEPILEPSY_MOTHER,TF,,Generalised epilepsy (mother),,Medical History,
+SV_TERATOGENIC_MOTHER,TF,,Teratogenic medication (mother),,Medications,
+SV_NEUROPSYCHAECONCOM,TF,,Concomitant medicines to neuropsychiatric adverse event,,Medications,
+SV_VALPROATECONCOMIMED,TF,,Concomitant valproate medication,,Medications,
+SV_INFECTIONS_PREG,TF,,Infections during pregnancy,,Pregnancy,

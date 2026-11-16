@@ -1,0 +1,23 @@
+# ---------------------------------------------------
+# Common elements
+# ---------------------------------------------------
+common:
+  composite_study_variables: transformations/common_configuration/RWE-BRIDGE/composite_study_variables.csv
+
+# ---------------------------------------------------
+# T3 Study Design tests
+# ---------------------------------------------------
+T3:
+  d3_eligibility:
+    script: transformations/T3_study_design/create_d3_eligibility.R
+    input: tests/testthat/data/d3_eligibility/D3_MULTIPLE_EPISODES.csv
+    expected_output: tests/testthat/data/d3_eligibility/D3_ELIGIBILITY.csv
+
+# ---------------------------------------------------
+# T4 Statistical Analysis tests
+# ---------------------------------------------------
+T4:
+  d4_studycohort:
+    script: transformations/T4_statistical_analysis/create_d4_studycohort.R
+    input: tests/testthat/data/d4_studycohort/D3_ELIGIBILITY.csv
+    expected_output: tests/testthat/data/d4_studycohort/D4_STUDYCOHORT.csv
