@@ -59,7 +59,7 @@ Each data object in the pipeline is documented in a corresponding [**codebook**]
 
 ### Codelist
 
-The analysis pipeline uses a `codelist` to identify records in the source data relevant to the study objectives. This codelist, its authors, and the appropriate citation has its own DOI: [10.5281/zenodo.21235599](https://zenodo.org/records/21235599)
+The analysis pipeline uses a `codelist` to identify records in the source data relevant to the study objectives. This codelist, its authors, and the appropriate citation has its own DOI: [10.5281/zenodo.21235549](https://zenodo.org/records/21235549)
 
 ### Dummy Data
 - Test data for a number of intermediate data objects can be found in `tests/testthat/test_data`
